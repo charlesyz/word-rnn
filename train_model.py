@@ -20,9 +20,9 @@ def load_doc(filename):
 
 
 # Global file names
-in_filename = 'sequences/sci-space-sequences-25.txt'
-model_name = 'models/model-sci-space-25.h5'
-tokenizer_name = 'tokenizers/tokenizer-sci-space'
+in_filename = 'sequences/sci-electronics-sequences-25.txt'
+model_name = 'models/model-sci-electronics-25.h5'
+tokenizer_name = 'tokenizers/tokenizer-sci-electronics'
 
 # load
 doc = load_doc(in_filename)
@@ -57,6 +57,10 @@ seq_length = X.shape[1]
 
 print("seq_length: " + str(seq_length))
 
+# save the tokenizer
+dump(tokenizer, open(tokenizer_name + '.pkl', 'wb'))
+plistlib.dump(tokenizer.word_index, open(tokenizer_name + '.plist', 'wb'))
+
 # define model
 model = Sequential()
 model.add(Embedding(vocab_size, inputlen, input_length=seq_length))
@@ -72,7 +76,3 @@ model.fit(X, y, batch_size=128, epochs=100)
 
 # save the model to file
 model.save(model_name)
-
-# save the tokenizer
-dump(tokenizer, open(tokenizer_name + '.pkl', 'wb'))
-plistlib.dump(tokenizer.word_index, open(tokenizer_name + '.plist', 'wb'))

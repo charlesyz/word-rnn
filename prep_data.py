@@ -35,26 +35,26 @@ def save_doc(text, fname):
 
 def clean_text(raw_text):
     #string with all ok non-alpha chars
-    ok_nonalpha_chars = '.,!?;: '
+    ok_nonalpha_chars = '1234567890.,!?;: '
     raw_text = raw_text.lower()
     raw_text = raw_text.replace('...', ' ')
     raw_text = raw_text.replace('\r', '\n')
 
     # pad all punctuation so they show up as unique words
     raw_text = re.sub('([.,!?;:])', r' \1 ', raw_text)
-    raw_text = re.sub('\s{2,}', ' ', raw_text)
 
     # get rid of all new lines
     raw_text = ' '.join(raw_text.split())
     # get rid of all non alpha
-    raw_text = ''.join(c for c in raw_text if (c.isalpha() or c in ok_nonalpha_chars))
+    raw_text = ''.join(c if (c.isalpha() or c in ok_nonalpha_chars) else ' ' for c in raw_text)
+    raw_text = re.sub('\s{2,}', ' ', raw_text)
     return raw_text
 
 
-out_filename = 'sequences/sci-space-sequences-25.txt'
+out_filename = 'sequences/sci-electronics-sequences-25.txt'
 
 # get raw data
-categories = ['sci.space']
+categories = ['sci.electronics']
 newsgroups_train = fetch_20newsgroups(subset='train',remove=('headers', 'footers', 'quotes'), categories=categories)
 
 data = ""
