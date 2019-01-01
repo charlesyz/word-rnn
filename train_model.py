@@ -20,9 +20,9 @@ def load_doc(filename):
 
 
 # Global file names
-in_filename = 'sequences/sci-electronics-sequences-25.txt'
-model_name = 'models/model-sci-electronics-25.h5'
-tokenizer_name = 'tokenizers/tokenizer-sci-electronics'
+in_filename = 'sequences/guns.txt'
+model_name = 'models/model-guns.h5'
+tokenizer_name = 'tokenizers/tokenizer-guns'
 
 # load
 doc = load_doc(in_filename)

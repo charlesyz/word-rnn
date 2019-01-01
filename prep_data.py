@@ -35,7 +35,7 @@ def save_doc(text, fname):
 
 def clean_text(raw_text):
     #string with all ok non-alpha chars
-    ok_nonalpha_chars = '1234567890.,!?;: '
+    ok_nonalpha_chars = '1234567890.,!?;:\' '
     raw_text = raw_text.lower()
     raw_text = raw_text.replace('...', ' ')
     raw_text = raw_text.replace('\r', '\n')
@@ -51,10 +51,10 @@ def clean_text(raw_text):
     return raw_text
 
 
-out_filename = 'sequences/sci-electronics-sequences-25.txt'
+out_filename = 'sequences/guns.txt'
 
 # get raw data
-categories = ['sci.electronics']
+categories = ['talk.politics.guns']
 newsgroups_train = fetch_20newsgroups(subset='train',remove=('headers', 'footers', 'quotes'), categories=categories)
 
 data = ""
