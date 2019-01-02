@@ -8,6 +8,8 @@ from keras.layers import Dense
 from keras.layers import LSTM
 from keras.layers import Embedding
 
+import os
+
 # load doc into memory
 def load_doc(filename):
     # open the file as read only
@@ -23,6 +25,11 @@ def load_doc(filename):
 in_filename = 'sequences/guns.txt'
 model_name = 'models/model-guns.h5'
 tokenizer_name = 'tokenizers/tokenizer-guns'
+
+if not os.path.exists('models/'):
+    os.makedirs('models/')
+if not os.path.exists('tokenizers/'):
+    os.makedirs('tokenizers/')
 
 # load
 doc = load_doc(in_filename)
